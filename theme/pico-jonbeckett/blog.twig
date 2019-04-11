@@ -1,0 +1,19 @@
+{% extends "base.twig" %}
+
+{% block body %}
+
+{{ parent() }}
+
+{% for page in pages|sort_by("time")|reverse %}
+    {% if page.date %}
+        <div class="post">
+            <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+			<p>{{ page.date_formatted }}</p>
+            <p>{{ page.description }}</p>
+			<p><a class="btn btn-primary" href="{{ page.url }}" role="button">Read More &raquo;</a></p>
+			<hr />
+        </div>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

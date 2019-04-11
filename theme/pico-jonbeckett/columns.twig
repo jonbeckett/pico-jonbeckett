@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+
+{% block body %}
+
+<div class="row">
+
+<div class="col-md-8">
+{{ content }}
+</div> <!-- .col-md-8 -->
+
+<div class="col-md-4">
+
+<h3>Recent Posts</h3>
+{% for page in pages|sort_by("time")|reverse|slice(0,5) %}
+    {% if page.date %}
+        <ul>
+            <li><strong><a href="{{ page.url }}">{{ page.title }}</a></strong><br />{{ page.date_formatted }}</li>
+        </ul>
+    {% endif %}
+{% endfor %}
+
+</div> <!-- .col-md-4 -->
+
+</div> <!-- .row -->
+
+{% endblock %}
